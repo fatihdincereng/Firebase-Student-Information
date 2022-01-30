@@ -1,0 +1,55 @@
+<div class="col-md-6 offset-md-3">
+    <div class="card">
+        <div class="card-header">
+            <h1>Ogrenci Bilgi Sistemi</h1>
+        </div>
+        <!-- Firebase bilgilerini ekranda gösterme komutları hbs modülü eklentisiyle  -->
+        <div class="card-body">
+            {{#if students}}
+            <ul class="list-group">
+                {{#each students}}
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    {{ogrenciad}}
+                    {{ogrencisoyad}} /
+                    {{ogrencinotortalamasi}} /
+                    {{ogrenciprojesayisi}}
+                    <!-- req.params.id buradaki key e eşitlendi genel mantık bu req ile de alınabilirdi ama this deki id ye göre de silinebilir ana mantık req den gelen id yi api ile fonksyona yazıp ön taraftan bu veriyi silme işlemidir.  -->
+                    <a href="/delete-student/{{@key}}" class="btn btn-danger">
+                        Silme
+                    </a>
+                </li>
+                {{/each}}
+            </ul>
+                
+
+            {{else}}
+            <p>Bilgi Yok</p>
+            {{/if}}
+
+        </div>
+        <div class="card-footer">
+            <form action="/new-student" method="POST">
+                <div class="form-group">
+                    <input type="text" name="ogrenciad" placeholder="Ogrenciad" class="form-control" autofocus>
+
+                </div>
+                 <div class="form-group">
+                    <input type="text" name="ogrencisoyad" placeholder="Ogrencisoyad" class="form-control">
+                    
+                </div>
+                 <div class="form-group">
+                    <input type="text" name="ogrencinotortalamasi" placeholder="Ogrencinotortalaması" class="form-control" >
+                    
+                </div>
+                 <div class="form-group">
+                    <input type="text" name="ogrenciprojesayisi" placeholder="Ogrenciprojesayisi" class="form-control" >
+                    
+                </div>
+                <button class="btn btn-primary btn-block">
+                    Ekle
+                </button>
+            </form>
+        </div>
+
+    </div>
+</div>
